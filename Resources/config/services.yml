@@ -1,0 +1,8 @@
+services:
+    twig.extension.constant_accessor:
+        class: JDecool\Bundle\TwigConstantAccessorBundle\Twig\ConstantAccessorExtension
+        public: false
+        arguments:
+            - []
+        tags:
+            - { name: twig.extension }

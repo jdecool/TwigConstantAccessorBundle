@@ -1,0 +1,22 @@
+{
+    "name": "jdecool/twig-constant-accessor-bundle",
+    "description": "Simplify access of your class constants in Twig",
+    "type": "symfony-bundle",
+    "keywords": ["symfony", "twig", "constant"],
+    "homepage": "http://github.com/jdecool/TwigConstantAccessorBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jérémy DECOOL",
+            "email": "contact@jdecool.fr"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "symfony/symfony": "^2.3|^3.0",
+        "twig/twig": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {"JDecool\\Bundle\\TwigConstantAccessorBundle\\": ""}
+    }
+}
