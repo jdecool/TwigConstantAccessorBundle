@@ -3,9 +3,8 @@
 namespace JDecool\Bundle\TwigConstantAccessorBundle\Twig;
 
 use Twig_Extension;
-use Twig_Extension_GlobalsInterface;
 
-class ConstantAccessorExtension extends Twig_Extension implements Twig_Extension_GlobalsInterface
+class ConstantAccessorExtension extends Twig_Extension
 {
     /** @var array */
     private $constants;
