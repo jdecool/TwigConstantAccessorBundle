@@ -18,11 +18,26 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('j_decool_twig_constant_accessor');
+        $rootNode = $treeBuilder->root('twig_constant_accessor');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+                ->arrayNode('classes')
+                    ->prototype('array')
+                        ->beforeNormalization()
+                            ->ifString()
+                            ->then(function ($v) { return ['class' => $v]; })
+                        ->end()
+                        ->treatNullLike([])
+                        ->treatFalseLike([])
+                        ->children()
+                            ->scalarNode('class')->defaultNull()->end()
+                            ->scalarNode('alias')->defaultNull()->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }
