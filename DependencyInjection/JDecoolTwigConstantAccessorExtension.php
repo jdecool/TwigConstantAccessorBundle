@@ -24,5 +24,16 @@ class JDecoolTwigConstantAccessorExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        $constantDefinition = [];
+        foreach ($config['classes'] as $class) {
+            $reflectionClass = new \ReflectionClass($class['class']);
+
+            $name = !empty($class['alias']) ? $class['alias'] : $reflectionClass->getShortName();
+            $constantDefinition[$name] = $reflectionClass->getConstants();
+        }
+
+        $extension = $container->getDefinition('twig.extension.constant_accessor');
+        $extension->replaceArgument(0, $constantDefinition);
     }
 }
