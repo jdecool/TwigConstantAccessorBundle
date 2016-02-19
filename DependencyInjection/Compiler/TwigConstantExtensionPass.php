@@ -16,20 +16,24 @@ class TwigConstantExtensionPass implements CompilerPassInterface
             return;
         }
 
-        $constants = [];
+        $extension = $container->getDefinition('twig.extension.constant_accessor');
+        $constants = $extension->getArgument(0);
 
         $taggedServices = $container->findTaggedServiceIds('twig.constant_accessor');
         foreach ($taggedServices as $id => $tags) {
             $service = $container->getDefinition($id);
 
             $reflectionClass = new \ReflectionClass($service->getClass());
-            foreach ($tags as $attributes) {
-                $name = isset($attributes['alias']) ? $attributes['alias'] : $reflectionClass->getShortName();
-                $constants[$name] = $reflectionClass->getConstants();
+            if (!empty($tags)) {
+                foreach ($tags as $attributes) {
+                    $name = isset($attributes['alias']) ? $attributes['alias'] : $reflectionClass->getShortName();
+                    $constants[$name] = $reflectionClass->getConstants();
+                }
+            } else {
+                $constants[$reflectionClass->getShortName()] = $reflectionClass->getConstants();
             }
         }
 
-        $extension = $container->getDefinition('twig.extension.constant_accessor');
         $extension->replaceArgument(0, $constants);
     }
 }
