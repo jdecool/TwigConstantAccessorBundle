@@ -17,4 +17,18 @@ class JDecoolTwigConstantAccessorBundle extends Bundle
 
         $container->addCompilerPass(new TwigConstantExtensionPass());
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getContainerExtension()
+    {
+        if (null === $this->extension && null !== ($extension = $this->createContainerExtension())) {
+            $this->extension = $extension;
+        }
+
+        if ($this->extension) {
+            return $this->extension;
+        }
+    }
 }

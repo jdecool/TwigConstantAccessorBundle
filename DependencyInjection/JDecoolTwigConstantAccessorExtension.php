@@ -36,4 +36,12 @@ class JDecoolTwigConstantAccessorExtension extends Extension
         $extension = $container->getDefinition('twig.extension.constant_accessor');
         $extension->replaceArgument(0, $constantDefinition);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAlias()
+    {
+        return 'twig_constant_accessor';
+    }
 }
