@@ -34,7 +34,17 @@ public function registerBundles()
 }
 ```
 
-Register the class you want to access constant in your container configuration :
+Register the class you want to access constant in your configuration file :
+
+```yaml
+twig_constant_accessor:
+    classes:
+        - AppBundle\Model\Foo
+        - { class: 'AppBundle\Model\Bar' }
+        - { class: 'AppBundle\Model\FooBar', alias: 'FooBarAlias' }
+```
+
+You can also register a class in your container configuration using the `twig.constant_accessor` tag :
 
 ```yaml
 services:
