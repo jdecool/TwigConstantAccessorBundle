@@ -1,6 +1,7 @@
 # TwigConstantAccessorBundle
 
 [![Build Status](https://travis-ci.org/jdecool/TwigConstantAccessorBundle.svg?branch=master)](https://travis-ci.org/jdecool/TwigConstantAccessorBundle)
+[![Latest Stable Version](https://poser.pugx.org/jdecool/twig-constant-accessor-bundle/v/stable.png)](https://packagist.org/packages/jdecool/twig-constant-accessor-bundle)
 
 This bundle simplify access of your class constants in Twig.
 
