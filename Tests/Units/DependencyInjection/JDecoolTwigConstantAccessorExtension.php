@@ -12,14 +12,14 @@ class JDecoolTwigConstantAccessorExtension extends atoum
     {
         $this
             ->given($container = new ContainerBuilder())
-            ->if($extension = $this->newTestedInstance())
+            ->if($extension = $this->newTestedInstance('twig_constant_accessor'))
             ->and($extension->load([], $container))
             ->then
                 ->boolean($container->hasDefinition('twig.extension.constant_accessor'))
                     ->isTrue()
 
             ->given($container = new ContainerBuilder())
-            ->if($extension = $this->newTestedInstance())
+            ->if($extension = $this->newTestedInstance('twig_constant_accessor'))
             ->and($extension->load(['twig_constant_accessor' => [
                 'classes' => [
                     'ActivationStatus'
@@ -35,7 +35,7 @@ class JDecoolTwigConstantAccessorExtension extends atoum
                     ->hasSize(1)
 
             ->given($container = new ContainerBuilder())
-            ->if($extension = $this->newTestedInstance())
+            ->if($extension = $this->newTestedInstance('twig_constant_accessor'))
             ->and($extension->load(['twig_constant_accessor' => [
                 'classes' => [
                     ['class' => 'ActivationStatus']
@@ -51,7 +51,7 @@ class JDecoolTwigConstantAccessorExtension extends atoum
                     ->hasSize(1)
 
             ->given($container = new ContainerBuilder())
-            ->if($extension = $this->newTestedInstance())
+            ->if($extension = $this->newTestedInstance('twig_constant_accessor'))
             ->and($extension->load(['twig_constant_accessor' => [
                 'classes' => [
                     ['class' => 'ActivationStatus', 'alias' => 'AliasName']
@@ -67,7 +67,7 @@ class JDecoolTwigConstantAccessorExtension extends atoum
                     ->hasSize(1)
 
             ->given($container = new ContainerBuilder())
-            ->if($extension = $this->newTestedInstance())
+            ->if($extension = $this->newTestedInstance('twig_constant_accessor'))
             ->and($extension->load(['twig_constant_accessor' => [
                 'classes' => [
                     'ActivationStatus',
@@ -104,7 +104,7 @@ twig_constant_accessor:
         - { class: 'Foo\Bar', alias: 'StatusAlias' }
 YAML
             )
-            ->if($extension = $this->newTestedInstance())
+            ->if($extension = $this->newTestedInstance('twig_constant_accessor'))
             ->and($extension->load(Yaml::parse($config), $container))
             ->then
                 ->boolean($container->hasDefinition('twig.extension.constant_accessor'))
