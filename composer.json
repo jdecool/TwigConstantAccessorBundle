@@ -27,6 +27,7 @@
     "autoload-dev": {
         "psr-4": {
             "": "Tests/Fixtures",
+            "JDecool\\Bundle\\TwigConstantAccessorBundle\\Tests\\Functionals\\": "Tests/Functionals",
             "JDecool\\Bundle\\TwigConstantAccessorBundle\\Tests\\Units\\": "Tests/Units"
         }
     }
