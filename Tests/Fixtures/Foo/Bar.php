@@ -4,5 +4,5 @@ namespace Foo;
 
 class Bar
 {
-    const NAME = 'name';
+    const NAME = 'foo_bar_name';
 }

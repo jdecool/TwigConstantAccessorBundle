@@ -17,8 +17,8 @@
         "twig/twig": "^1.0"
     },
     "require-dev": {
-        "atoum/atoum": "^2.5",
-        "atoum/stubs": "^2.5"
+        "phpunit/phpunit": "^4.8",
+        "matthiasnoback/symfony-dependency-injection-test": "^0.7"
     },
     "autoload": {
         "psr-4": {"JDecool\\Bundle\\TwigConstantAccessorBundle\\": ""},
