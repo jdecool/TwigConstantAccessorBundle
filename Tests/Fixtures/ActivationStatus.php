@@ -2,6 +2,6 @@
 
 class ActivationStatus
 {
-    const INACTIVE = 0;
-    const ACTIVE   = 1;
+    const INACTIVE = 'activationstatus_inactive';
+    const ACTIVE   = 'activationstatus_active';
 }

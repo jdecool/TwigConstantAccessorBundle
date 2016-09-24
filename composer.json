@@ -13,12 +13,12 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "symfony/symfony": "^2.3|^3.0",
+        "symfony/symfony": "^2.7|^3.0",
         "twig/twig": "^1.0"
     },
     "require-dev": {
-        "atoum/atoum": "^2.5",
-        "atoum/stubs": "^2.5"
+        "phpunit/phpunit": "^4.8",
+        "matthiasnoback/symfony-dependency-injection-test": "^0.7"
     },
     "autoload": {
         "psr-4": {"JDecool\\Bundle\\TwigConstantAccessorBundle\\": ""},
@@ -27,6 +27,7 @@
     "autoload-dev": {
         "psr-4": {
             "": "Tests/Fixtures",
+            "JDecool\\Bundle\\TwigConstantAccessorBundle\\Tests\\Functionals\\": "Tests/Functionals",
             "JDecool\\Bundle\\TwigConstantAccessorBundle\\Tests\\Units\\": "Tests/Units"
         }
     }
