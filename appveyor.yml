@@ -39,4 +39,4 @@ install:
 
 test_script:
     - cd C:\projects\twig-constants
-    - php vendor\bin\phpunit
+    - vendor\bin\phpunit.bat
