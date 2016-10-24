@@ -1,0 +1,8 @@
+services:
+    constant_accessor.data_collector:
+        class: JDecool\Bundle\TwigConstantAccessorBundle\DataCollector\ConstantCollector
+        public: false
+        arguments:
+            - "@twig.extension.constant_accessor"
+        tags:
+            - { name: data_collector, template: "@JDecoolTwigConstantAccessor/data_collector/template.html.twig", id: "constant_accessor.constant_collector" }
