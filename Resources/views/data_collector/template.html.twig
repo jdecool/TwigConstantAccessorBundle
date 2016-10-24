@@ -1,0 +1,30 @@
+{% extends 'WebProfilerBundle:Profiler:layout.html.twig' %}
+
+{% block menu %}
+    <span class="label">
+        <span class="icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABqElEQVRYR8WWQU6FMBCGpwmsTFwZFx5D31H0AC7MCxpgiYlbN27b+DAsvIDexOgxXBh3uiEkHVPzeClIYToIsG6Zb/75+7cCFv7EwvVhFIBSaqW1xjRNX7mNjAKQUhZCCIzjeD07gJRyHwDejQJlWR5lWfbFgWArIKU0XT+Yooi4TtO0mBvAzP14W/QtSZKT2QCM+RDxxS6IiCuOGVkjMOYDgAsbQAhRcMzoDVCbDwD2bACt9TfHjByAnfnaM+eYkQNgm6/N4G3GHYBS6gwRNwBwwHGzx55PIcRlHMdPZk9DgTzPD6uqugeAU48f+ix9DsPwKoqij3pT5wgmUKPRdeP0uPD/UY0/XZMA6kUj1HB27QVgFjPU6O3aG8Bs6Ipf1/h8YpmcA13x6wLwiWUSgCt+XQA+sUwFcMZvzxhIbwQqQFf8/rp8+yDpSlBSLA8COMzXcLnrlFDMOAjQMl/v2W5nBsWMvQAt85HOtq0GxYxDAMZ8t/btRb15ajUQ8abvwdoLoJS6DoLg0b69qABWgp4nSXLnzAyfH06xdtCEUxRl3QVTgSyuwA+XPQYwCdfEiQAAAABJRU5ErkJggg==" alt="Twig constants" width="32" height="32" /></span>
+        <strong>Twig Constants</strong>
+    </span>
+{% endblock %}
+
+{% block panel %}
+    <h2>Constants</h2>
+    <table>
+        {% for class, data in collector.constants %}
+            <tr>
+                <th colspan="2">{{ class }}</th>
+            </tr>
+
+            {% for key, value in data %}
+                <tr>
+                    <th>{{ key }}</th>
+                    <td>{{ value }}</td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="2" style="text-align: center;">No constants declared.</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

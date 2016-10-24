@@ -38,6 +38,10 @@ class JDecoolTwigConstantAccessorExtension extends ConfigurableExtension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
+        if ($container->getParameter('kernel.debug')) {
+            $loader->load('debug.yml');
+        }
+
         $constantDefinition = [];
         foreach ($mergedConfig['classes'] as $class) {
             $reflectionClass = new \ReflectionClass($class['class']);

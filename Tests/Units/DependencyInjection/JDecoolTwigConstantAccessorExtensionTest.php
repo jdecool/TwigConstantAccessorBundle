@@ -9,6 +9,7 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
 {
     public function testLoadEmpty()
     {
+        $this->setParameter('kernel.debug', true);
         $this->load();
 
         $this->assertContainerBuilderHasService('twig.extension.constant_accessor');
@@ -16,6 +17,7 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
 
     public function testLoadWithClassStringDefinition()
     {
+        $this->setParameter('kernel.debug', true);
         $this->load([
             'classes' => [
                 'ActivationStatus',
@@ -37,6 +39,7 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
 
     public function testLoadWithClassArrayDefinition()
     {
+        $this->setParameter('kernel.debug', true);
         $this->load([
             'classes' => [
                 ['class' => 'ActivationStatus'],
@@ -58,6 +61,7 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
 
     public function testLoadWithClassAliasDefinition()
     {
+        $this->setParameter('kernel.debug', true);
         $this->load([
             'classes' => [
                 ['class' => 'ActivationStatus', 'alias' => 'AliasName'],
@@ -79,6 +83,7 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
 
     public function testLoadWithMultipleClassDefinition()
     {
+        $this->setParameter('kernel.debug', true);
         $this->load([
             'classes' => [
                 'ActivationStatus',
