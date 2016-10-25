@@ -46,8 +46,23 @@ class JDecoolTwigConstantAccessorExtension extends ConfigurableExtension
         foreach ($mergedConfig['classes'] as $class) {
             $reflectionClass = new \ReflectionClass($class['class']);
 
+            if (null !== $class['matches']) {
+                $constants = [];
+                foreach ($reflectionClass->getConstants() as $const => $value) {
+                    if (false === ($matches = preg_match($class['matches'], $const))) {
+                        throw new \InvalidArgumentException(sprintf('RegExp rule "%s" is not valid.', $class['matches']));
+                    }
+
+                    if ($matches) {
+                        $constants[$const] = $value;
+                    }
+                }
+            } else {
+                $constants = $reflectionClass->getConstants();
+            }
+
             $name = !empty($class['alias']) ? $class['alias'] : $reflectionClass->getShortName();
-            $constantDefinition[$name] = $reflectionClass->getConstants();
+            $constantDefinition[$name] = $constants;
         }
 
         $extension = $container->getDefinition('twig.extension.constant_accessor');

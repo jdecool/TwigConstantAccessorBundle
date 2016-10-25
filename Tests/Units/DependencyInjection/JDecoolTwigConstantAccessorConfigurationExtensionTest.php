@@ -12,10 +12,11 @@ class JDecoolTwigConstantAccessorConfigurationExtensionTest extends AbstractExte
     {
         $expectedConfiguration = [
             'classes' => [
-                ['class' => 'ActivationStatus', 'alias' => null],
-                ['class' => 'FooBarConstant', 'alias' => null],
-                ['class' => 'Foo\Bar', 'alias' => null],
-                ['class' => 'Foo\Bar', 'alias' => 'StatusAlias'],
+                ['class' => 'ActivationStatus', 'alias' => null, 'matches' => null],
+                ['class' => 'FooBarConstant', 'alias' => null, 'matches' => null],
+                ['class' => 'Foo\Bar', 'alias' => null, 'matches' => null],
+                ['class' => 'Foo\Bar', 'alias' => 'StatusAlias', 'matches' => null],
+                ['class' => 'RegExp\Rules', 'alias' => null, 'matches' => '/^RULE_/'],
             ],
         ];
 

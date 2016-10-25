@@ -4,3 +4,4 @@ twig_constant_accessor:
         - { class: 'FooBarConstant' }
         - { class: 'Foo\Bar' }
         - { class: 'Foo\Bar', alias: 'StatusAlias' }
+        - { class: 'RegExp\Rules', matches: '/^RULE_/' }

@@ -26,8 +26,23 @@ class TwigConstantExtensionPass implements CompilerPassInterface
             $reflectionClass = new \ReflectionClass($service->getClass());
             if (!empty($tags)) {
                 foreach ($tags as $attributes) {
+                    if (!empty($attributes['matches'])) {
+                        $c = [];
+                        foreach ($reflectionClass->getConstants() as $const => $value) {
+                            if (false === ($matches = preg_match($attributes['matches'], $const))) {
+                                throw new \InvalidArgumentException(sprintf('RegExp rule "%s" is not valid.', $attributes['matches']));
+                            }
+
+                            if ($matches) {
+                                $c[$const] = $value;
+                            }
+                        }
+                    } else {
+                        $c = $reflectionClass->getConstants();
+                    }
+
                     $name = isset($attributes['alias']) ? $attributes['alias'] : $reflectionClass->getShortName();
-                    $constants[$name] = $reflectionClass->getConstants();
+                    $constants[$name] = $c;
                 }
             } else {
                 $constants[$reflectionClass->getShortName()] = $reflectionClass->getConstants();
