@@ -31,6 +31,7 @@ class TemplateKernel extends Kernel
                     'Foo\Bar',
                     ['class' => 'ActivationStatus'],
                     ['class' => 'FooBarConstant', 'alias' => 'FooBarAlias'],
+                    ['class' => 'RegExp\Rules', 'matches' => '/^RULE_/'],
                 ]
             ]);
         });

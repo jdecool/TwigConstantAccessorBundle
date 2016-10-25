@@ -47,4 +47,15 @@ class TemplateKernelTest extends \PHPUnit_Framework_TestCase
         $this->assertContains('foobarconstant_foo', $content);
         $this->assertContains('foobarconstant_bar', $content);
     }
+
+    public function testRegExpConfiguration()
+    {
+        $content = $this->kernel->getContainer()->get('twig')->render('regexp.html.twig');
+
+        $this->assertContains('foo', $content);
+        $this->assertContains('bar', $content);
+
+        $this->assertNotContains('john', $content);
+        $this->assertNotContains('doe', $content);
+    }
 }
