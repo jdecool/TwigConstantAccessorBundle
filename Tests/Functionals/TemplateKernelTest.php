@@ -27,14 +27,14 @@ class TemplateKernelTest extends \PHPUnit_Framework_TestCase
 
     public function testStringConfiguration()
     {
-        $content = $this->kernel->getContainer()->get('twig')->render('index.html.twig');
+        $content = $this->render('index.html.twig');
 
         $this->assertContains('foo_bar_name', $content);
     }
 
     public function testArrayConfiguration()
     {
-        $content = $this->kernel->getContainer()->get('twig')->render('index.html.twig');
+        $content = $this->render('index.html.twig');
 
         $this->assertContains('activationstatus_inactive', $content);
         $this->assertContains('activationstatus_active', $content);
@@ -42,7 +42,7 @@ class TemplateKernelTest extends \PHPUnit_Framework_TestCase
 
     public function testAliasConfiguration()
     {
-        $content = $this->kernel->getContainer()->get('twig')->render('index.html.twig');
+        $content = $this->render('index.html.twig');
 
         $this->assertContains('foobarconstant_foo', $content);
         $this->assertContains('foobarconstant_bar', $content);
@@ -50,12 +50,39 @@ class TemplateKernelTest extends \PHPUnit_Framework_TestCase
 
     public function testRegExpConfiguration()
     {
-        $content = $this->kernel->getContainer()->get('twig')->render('regexp.html.twig');
+        $content = $this->render('regexp.html.twig');
 
         $this->assertContains('foo', $content);
         $this->assertContains('bar', $content);
 
         $this->assertNotContains('john', $content);
         $this->assertNotContains('doe', $content);
+    }
+
+    public function testServiceConfiguration()
+    {
+        $content = $this->render('regexp_service_alias.html.twig');
+
+        $this->assertContains('foo', $content);
+        $this->assertContains('bar', $content);
+
+        $this->assertContains('john', $content);
+        $this->assertContains('doe', $content);
+    }
+
+    public function testServiceMatchesConfiguration()
+    {
+        $content = $this->render('regexp_service.html.twig');
+
+        $this->assertContains('foo', $content);
+        $this->assertContains('bar', $content);
+
+        $this->assertNotContains('john', $content);
+        $this->assertNotContains('doe', $content);
+    }
+
+    private function render($template)
+    {
+        return $this->kernel->getContainer()->get('twig')->render($template);
     }
 }
