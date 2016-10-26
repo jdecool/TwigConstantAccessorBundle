@@ -45,6 +45,7 @@ twig_constant_accessor:
         - AppBundle\Model\Foo
         - { class: 'AppBundle\Model\Bar' }
         - { class: 'AppBundle\Model\FooBar', alias: 'FooBarAlias' }
+        - { class: 'AppBundle\Model\ConstantClass', matches: '/^RULE_/' } # matches accept an regexp compatible with the preg_match function
 ```
 
 You can also register a class in your container configuration using the `twig.constant_accessor` tag :
@@ -60,6 +61,11 @@ services:
         class: MyClass
         tags:
             - { name: twig.constant_accessor, alias: 'MyClassAlias' }
+            
+    filtered_constants:
+        class: ConstantsClass
+        tags:
+            - { name: twig.constant_accessor, matches: '/^RULE_/' } # matches accept an regexp compatible with the preg_match function
 ```
 
 After you can access your class constant in your templates :
