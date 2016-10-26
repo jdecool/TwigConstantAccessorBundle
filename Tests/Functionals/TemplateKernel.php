@@ -3,9 +3,11 @@
 namespace JDecool\Bundle\TwigConstantAccessorBundle\Tests\Functionals;
 
 use JDecool\Bundle\TwigConstantAccessorBundle\JDecoolTwigConstantAccessorBundle;
+use JDecool\Bundle\TwigConstantAccessorBundle\Tests\Fixtures\TestBundle\TestBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 
 class TemplateKernel extends Kernel
@@ -21,7 +23,9 @@ class TemplateKernel extends Kernel
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(function ($container) {
+        $loader->load($this->getRootDir().'/Resources/config/services.yml');
+
+        $loader->load(function (ContainerBuilder $container) {
             $container->loadFromExtension('framework', [
                 'secret' => '$ecret',
             ]);
