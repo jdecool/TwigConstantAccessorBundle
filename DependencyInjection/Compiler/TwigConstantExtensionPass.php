@@ -12,43 +12,27 @@ class TwigConstantExtensionPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        if (!$container->has('twig.extension.constant_accessor')) {
+        if (!$container->has('constant_accessor.accessors')) {
             return;
         }
 
-        $extension = $container->getDefinition('twig.extension.constant_accessor');
-        $constants = $extension->getArgument(0);
+        $accessorCollectionDefinition = $container->getDefinition('constant_accessor.accessors');
 
         $taggedServices = $container->findTaggedServiceIds('twig.constant_accessor');
         foreach ($taggedServices as $id => $tags) {
             $service = $container->getDefinition($id);
 
-            $reflectionClass = new \ReflectionClass($service->getClass());
             if (!empty($tags)) {
                 foreach ($tags as $attributes) {
-                    if (!empty($attributes['matches'])) {
-                        $c = [];
-                        foreach ($reflectionClass->getConstants() as $const => $value) {
-                            if (false === ($matches = preg_match($attributes['matches'], $const))) {
-                                throw new \InvalidArgumentException(sprintf('RegExp rule "%s" is not valid.', $attributes['matches']));
-                            }
+                    $attributes = array_merge([
+                        'class'   => $service->getClass(),
+                        'alias'   => null,
+                        'matches' => null,
+                    ], $attributes);
 
-                            if ($matches) {
-                                $c[$const] = $value;
-                            }
-                        }
-                    } else {
-                        $c = $reflectionClass->getConstants();
-                    }
-
-                    $name = isset($attributes['alias']) ? $attributes['alias'] : $reflectionClass->getShortName();
-                    $constants[$name] = $c;
+                    $accessorCollectionDefinition->addMethodCall('addFromArray', [$attributes]);
                 }
-            } else {
-                $constants[$reflectionClass->getShortName()] = $reflectionClass->getConstants();
             }
         }
-
-        $extension->replaceArgument(0, $constants);
     }
 }

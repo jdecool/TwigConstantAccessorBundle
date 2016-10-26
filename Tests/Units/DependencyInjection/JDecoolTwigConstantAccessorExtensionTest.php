@@ -24,14 +24,15 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
             ],
         ]);
 
-        $this->assertContainerBuilderHasService('twig.extension.constant_accessor');
-        $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'twig.extension.constant_accessor',
-            0,
+        $this->assertContainerBuilderHasService('constant_accessor.accessors');
+        $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
+            'constant_accessor.accessors',
+            'addFromArray',
             [
-                'ActivationStatus' => [
-                    'INACTIVE' => 'activationstatus_inactive',
-                    'ACTIVE'   => 'activationstatus_active',
+                [
+                    'class'   => 'ActivationStatus',
+                    'alias'   => null,
+                    'matches' => null,
                 ],
             ]
         );
@@ -46,14 +47,15 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
             ],
         ]);
 
-        $this->assertContainerBuilderHasService('twig.extension.constant_accessor');
-        $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'twig.extension.constant_accessor',
-            0,
+        $this->assertContainerBuilderHasService('constant_accessor.accessors');
+        $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
+            'constant_accessor.accessors',
+            'addFromArray',
             [
-                'ActivationStatus' => [
-                    'INACTIVE' => 'activationstatus_inactive',
-                    'ACTIVE'   => 'activationstatus_active',
+                [
+                    'class'   => 'ActivationStatus',
+                    'alias'   => null,
+                    'matches' => null,
                 ],
             ]
         );
@@ -68,14 +70,15 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
             ],
         ]);
 
-        $this->assertContainerBuilderHasService('twig.extension.constant_accessor');
-        $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'twig.extension.constant_accessor',
-            0,
+        $this->assertContainerBuilderHasService('constant_accessor.accessors');
+        $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
+            'constant_accessor.accessors',
+            'addFromArray',
             [
-                'AliasName' => [
-                    'INACTIVE' => 'activationstatus_inactive',
-                    'ACTIVE'   => 'activationstatus_active',
+                [
+                    'class'   => 'ActivationStatus',
+                    'alias'   => 'AliasName',
+                    'matches' => null,
                 ],
             ]
         );
@@ -92,22 +95,62 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
             ],
         ]);
 
-        $this->assertContainerBuilderHasService('twig.extension.constant_accessor');
-        $this->assertContainerBuilderHasServiceDefinitionWithArgument(
-            'twig.extension.constant_accessor',
-            0,
+        $this->assertContainerBuilderHasService('constant_accessor.accessors');
+        $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
+            'constant_accessor.accessors',
+            'addFromArray',
             [
-                'ActivationStatus' => [
-                    'INACTIVE' => 'activationstatus_inactive',
-                    'ACTIVE'   => 'activationstatus_active',
+                [
+                    'class'   => 'ActivationStatus',
+                    'alias'   => null,
+                    'matches' => null,
                 ],
-                'FooBarConstant' => [
-                    'FOO' => 'foobarconstant_foo',
-                    'BAR' => 'foobarconstant_bar',
+            ]
+        );
+
+        $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
+            'constant_accessor.accessors',
+            'addFromArray',
+            [
+                [
+                    'class'   => 'FooBarConstant',
+                    'alias'   => null,
+                    'matches' => null,
                 ],
-                'StatusAlias' => [
-                    'INACTIVE' => 'activationstatus_inactive',
-                    'ACTIVE'   => 'activationstatus_active',
+            ]
+        );
+
+        $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
+            'constant_accessor.accessors',
+            'addFromArray',
+            [
+                [
+                    'class'   => 'ActivationStatus',
+                    'alias'   => 'StatusAlias',
+                    'matches' => null,
+                ],
+            ]
+        );
+    }
+
+    public function testLoadWithMatchesDefinition()
+    {
+        $this->setParameter('kernel.debug', true);
+        $this->load([
+            'classes' => [
+                ['class' => 'FooBarConstant', 'matches' => '/^RULE/'],
+            ],
+        ]);
+
+        $this->assertContainerBuilderHasService('constant_accessor.accessors');
+        $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
+            'constant_accessor.accessors',
+            'addFromArray',
+            [
+                [
+                    'class'   => 'FooBarConstant',
+                    'alias'   => null,
+                    'matches' => '/^RULE/',
                 ],
             ]
         );
