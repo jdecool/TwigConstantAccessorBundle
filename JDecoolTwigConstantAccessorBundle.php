@@ -3,6 +3,7 @@
 namespace JDecool\Bundle\TwigConstantAccessorBundle;
 
 use JDecool\Bundle\TwigConstantAccessorBundle\DependencyInjection\Compiler\TwigConstantExtensionPass;
+use JDecool\Bundle\TwigConstantAccessorBundle\DependencyInjection\Compiler\TwigConstantOptimizerPass;
 use JDecool\Bundle\TwigConstantAccessorBundle\DependencyInjection\JDecoolTwigConstantAccessorExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -17,6 +18,7 @@ class JDecoolTwigConstantAccessorBundle extends Bundle
         parent::build($container);
 
         $container->addCompilerPass(new TwigConstantExtensionPass());
+        $container->addCompilerPass(new TwigConstantOptimizerPass());
     }
 
     /**
