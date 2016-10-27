@@ -2,24 +2,24 @@
 
 namespace JDecool\Bundle\TwigConstantAccessorBundle\DataCollector;
 
-use JDecool\Bundle\TwigConstantAccessorBundle\Twig\ConstantAccessorExtension;
+use JDecool\Bundle\TwigConstantAccessorBundle\Accessor\ConstantCollection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\DataCollector\DataCollector;
 
 class ConstantCollector extends DataCollector
 {
-    /** @var ConstantAccessorExtension */
-    private $accessor;
+    /** @var ConstantCollection */
+    private $accessors;
 
     /**
      * Constructor
      *
-     * @param ConstantAccessorExtension $accessor
+     * @param ConstantCollection $accessors
      */
-    public function __construct(ConstantAccessorExtension $accessor)
+    public function __construct(ConstantCollection $accessors)
     {
-        $this->accessor = $accessor;
+        $this->accessors = $accessors;
     }
 
     /**
@@ -28,18 +28,18 @@ class ConstantCollector extends DataCollector
     public function collect(Request $request, Response $response, \Exception $exception = null)
     {
         $this->data = [
-            'constants' => $this->accessor->getGlobals(),
+            'accessors' => $this->accessors->toArray(),
         ];
     }
 
     /**
-     * Get defined constants
+     * Get all constants accessors declared
      *
-     * @return array
+     * @return ConstantCollection
      */
-    public function getConstants()
+    public function getAccessors()
     {
-        return $this->data['constants'];
+        return $this->data['accessors'];
     }
 
     /**

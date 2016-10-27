@@ -38,6 +38,20 @@ class ConstantAccessor extends \ReflectionClass
     }
 
     /**
+     * Get declared matches rules
+     *
+     * @return string
+     */
+    public function getMatches()
+    {
+        if (empty($this->options['matches'])) {
+            return null;
+        }
+
+        return $this->options['matches'];
+    }
+
+    /**
      * Extract class constants
      *
      * @return array
@@ -60,5 +74,20 @@ class ConstantAccessor extends \ReflectionClass
         }
 
         return $constants;
+    }
+
+    /**
+     * Transform object to an array
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return [
+            'class'     => $this->getName(),
+            'alias'     => $this->getKey(),
+            'matches'   => $this->getMatches(),
+            'constants' => $this->getConstants(),
+        ];
     }
 }
