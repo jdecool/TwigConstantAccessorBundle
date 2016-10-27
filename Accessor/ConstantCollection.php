@@ -42,6 +42,18 @@ class ConstantCollection implements \ArrayAccess, \IteratorAggregate
     }
 
     /**
+     * Transform the collection in array
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return array_map(function(ConstantAccessor $accessor) {
+            return $accessor->toArray();
+        }, $this->contants);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function offsetExists($offset)

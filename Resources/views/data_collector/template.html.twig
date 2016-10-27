@@ -10,14 +10,22 @@
 {% block panel %}
     <h2>Constants</h2>
     <table>
-        {% for class, data in collector.constants %}
+        {% for accessor in collector.accessors %}
+            <thead>
             <tr>
-                <th colspan="2">{{ class }}</th>
+                <th colspan="2">
+                    {{ accessor.alias }} (<i>{{ accessor.class }}</i>)
+                    {% if accessor.matches %}
+                        <br>
+                        <span style="font-size: 12px; font-weight: normal;">Matches rule: {{ accessor.matches }}</span>
+                    {% endif %}
+                </th>
             </tr>
+            </thead>
 
-            {% for key, value in data %}
+            {% for key, value in accessor.constants %}
                 <tr>
-                    <th>{{ key }}</th>
+                    <th style="width: 25%;">{{ key }}</th>
                     <td>{{ value }}</td>
                 </tr>
             {% endfor %}
