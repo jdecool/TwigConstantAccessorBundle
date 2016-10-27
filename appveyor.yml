@@ -33,7 +33,6 @@ install:
     - echo extension=php_curl.dll >> php.ini
     - echo extension=php_mbstring.dll >> php.ini
     - echo extension=php_fileinfo.dll >> php.ini
-    - appveyor DownloadFile https://getcomposer.org/composer.phar
     - cd c:\projects\twig-constants
     - php c:\php\composer.phar install
 
