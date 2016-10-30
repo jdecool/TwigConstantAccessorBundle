@@ -13,6 +13,10 @@ class TwigConstantOptimizerPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
+        if (!$container->has('constant_accessor.accessors') || !$container->has('twig.extension.constant_accessor')) {
+            return;
+        }
+
         $flattenConstants = [];
 
         /** @var ConstantAccessor[] $accessorsCollection */
