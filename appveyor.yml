@@ -5,10 +5,12 @@ clone_folder: C:\projects\twig-constants
 
 environment:
     matrix:
-        - PHP_DOWNLOAD_FILE: php-5.4.44-nts-Win32-VC9-x86.zip
-        - PHP_DOWNLOAD_FILE: php-5.5.35-nts-Win32-VC11-x86.zip
-        - PHP_DOWNLOAD_FILE: php-5.6.21-nts-Win32-VC11-x86.zip
-        - PHP_DOWNLOAD_FILE: php-7.0.6-nts-Win32-VC14-x86.zip
+        - PHP_DOWNLOAD_URL: http://windows.php.net/downloads/releases/archives
+          PHP_DOWNLOAD_FILE: php-5.6.28-nts-Win32-VC11-x86.zip
+        - PHP_DOWNLOAD_URL: http://windows.php.net/downloads/releases/archives
+          PHP_DOWNLOAD_FILE: php-7.0.9-nts-Win32-VC14-x86.zip
+        - PHP_DOWNLOAD_URL: http://windows.php.net/downloads/releases
+          PHP_DOWNLOAD_FILE: php-7.1.0-nts-Win32-VC14-x86.zip
 
 cache:
     - c:\php -> appveyor.yml
@@ -22,7 +24,7 @@ init:
 install:
     - IF EXIST c:\php (SET PHP=0) ELSE (mkdir c:\php)
     - cd c:\php
-    - IF %PHP%==1 appveyor DownloadFile http://windows.php.net/downloads/releases/archives/%PHP_DOWNLOAD_FILE%
+    - IF %PHP%==1 appveyor DownloadFile %PHP_DOWNLOAD_URL%/%PHP_DOWNLOAD_FILE%
     - IF %PHP%==1 7z x %PHP_DOWNLOAD_FILE% -y > 7z.log
     - IF %PHP%==1 echo @php %%~dp0composer.phar %%* > composer.bat
     - appveyor DownloadFile https://getcomposer.org/composer.phar
