@@ -25,7 +25,7 @@ class TemplateKernel extends Kernel
     {
         $loader->load($this->getRootDir().'/Resources/config/services.yml');
 
-        $loader->load(function (ContainerBuilder $container) {
+        $loader->load(function(ContainerBuilder $container) {
             $container->loadFromExtension('framework', [
                 'secret' => '$ecret',
             ]);

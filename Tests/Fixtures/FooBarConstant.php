@@ -7,5 +7,6 @@ class FooBarConstant
 
 
     private function __construct()
-    { }
+    {
+    }
 }

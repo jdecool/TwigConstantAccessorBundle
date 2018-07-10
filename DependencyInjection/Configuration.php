@@ -34,7 +34,9 @@ class Configuration implements ConfigurationInterface
                     ->prototype('array')
                         ->beforeNormalization()
                             ->ifString()
-                            ->then(function ($v) { return ['class' => $v]; })
+                            ->then(function($v) {
+                                return ['class' => $v];
+                            })
                         ->end()
                         ->treatNullLike([])
                         ->treatFalseLike([])
