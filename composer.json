@@ -16,12 +16,12 @@
         "symfony/dependency-injection": "^2.8|^3.4|^4.0",
         "symfony/framework-bundle": "^2.8|^3.4|^4.0",
         "symfony/twig-bundle": "^2.8|^3.4|^4.0",
-        "twig/twig": "^1.23|^2.0",
-        "friendsofphp/php-cs-fixer": "^2.12"
+        "twig/twig": "^1.23|^2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8|^7.0",
-        "matthiasnoback/symfony-dependency-injection-test": "^0.7|^3.0"
+        "matthiasnoback/symfony-dependency-injection-test": "^0.7|^3.0",
+        "friendsofphp/php-cs-fixer": "^2.12"
     },
     "autoload": {
         "psr-4": {"JDecool\\Bundle\\TwigConstantAccessorBundle\\": ""},
