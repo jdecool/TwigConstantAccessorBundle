@@ -49,4 +49,11 @@ class ConstantCollector extends DataCollector
     {
         return 'constant_accessor.constant_collector';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function reset()
+    {
+    }
 }
