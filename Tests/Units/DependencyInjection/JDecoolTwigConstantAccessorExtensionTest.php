@@ -156,7 +156,7 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    protected function getContainerExtensions()
+    protected function getContainerExtensions(): array
     {
         return [
             new JDecoolTwigConstantAccessorExtension('twig_constant_accessor'),
