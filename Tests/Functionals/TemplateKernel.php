@@ -30,6 +30,13 @@ class TemplateKernel extends Kernel
                 'secret' => '$ecret',
             ]);
 
+            $container->loadFromExtension('twig', [
+                'paths' => [
+                    realpath(__DIR__.'/Resources/views'),
+                ],
+                'strict_variables' => true,
+            ]);
+
             $container->loadFromExtension('twig_constant_accessor', [
                 'classes' => [
                     'Foo\Bar',
@@ -39,6 +46,11 @@ class TemplateKernel extends Kernel
                 ]
             ]);
         });
+    }
+
+    public function getRootDir()
+    {
+        return realpath(__DIR__);
     }
 
     public function getCacheDir()
