@@ -2,6 +2,7 @@
 
 namespace JDecool\Bundle\TwigConstantAccessorBundle\Tests\Units\DependencyInjection\Compiler;
 
+use JDecool\Bundle\TwigConstantAccessorBundle\Accessor\ConstantAccessor;
 use JDecool\Bundle\TwigConstantAccessorBundle\DependencyInjection\Compiler\TwigConstantOptimizerPass;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -22,9 +23,7 @@ class TwigConstantOptimizerPassTest extends AbstractCompilerPassTestCase
 
     public function testOptimization()
     {
-        $fooClass = $this->getMockBuilder('JDecool\Bundle\TwigConstantAccessorBundle\Accessor\ConstantAccessor')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $fooClass = $this->createMock(ConstantAccessor::class);
         $fooClass->method('getKey')
             ->willReturn('Foo');
         $fooClass->method('getConstants')
@@ -62,7 +61,7 @@ class TwigConstantOptimizerPassTest extends AbstractCompilerPassTestCase
         );
     }
 
-    protected function registerCompilerPass(ContainerBuilder $container)
+    protected function registerCompilerPass(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new TwigConstantOptimizerPass());
     }
