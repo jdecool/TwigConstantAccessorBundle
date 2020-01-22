@@ -24,10 +24,7 @@
             </thead>
 
             {% for key, value in accessor.constants %}
-                <tr>
-                    <th style="width: 25%;">{{ key }}</th>
-                    <td>{{ value }}</td>
-                </tr>
+                {{ _self.print_constant(key, value) }}
             {% endfor %}
         {% else %}
             <tr>
@@ -36,3 +33,16 @@
         {% endfor %}
     </table>
 {% endblock %}
+
+{% macro print_constant(key, value) %}
+    {% if value is iterable %}
+        {% for c_key, c_value in value %}
+            {{ _self.print_constant(key~'.'~c_key, c_value) }}
+        {% endfor %}
+    {% else %}
+        <tr>
+            <th style="width: 25%;">{{ key }}</th>
+            <td>{{ value }}
+        </tr>
+    {% endif %}
+{% endmacro %}
