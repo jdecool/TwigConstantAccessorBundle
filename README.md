@@ -10,30 +10,19 @@ This bundle simplify access of your class constants in Twig.
 
 Install extension using [composer](https://getcomposer.org):
 
-```json
-{
-    "require": {
-        "jdecool/twig-constant-accessor-bundle": "~1.0"
-    }
-}
+```bash
+$ composer require jdecool/twig-constant-accessor-bundle
 ```
 
-Enable the extension in your application `AppKernel`:
+If you don't use Symfony Flex, you have to enabled the bundle in your `config/bundles.php` configuration:
 
 ```php
 <?php
 
-public function registerBundles()
-{
-    $bundles = [
-        // ...
-        new JDecool\Bundle\TwigConstantAccessorBundle\JDecoolTwigConstantAccessorBundle(),
-    ];
-
+return [
     // ...
-
-    return $bundles;
-}
+    JDecool\Bundle\TwigConstantAccessorBundle\JDecoolTwigConstantAccessorBundle::class => ['all' => true],
+];
 ```
 
 Register the class you want to access constant in your configuration file :
