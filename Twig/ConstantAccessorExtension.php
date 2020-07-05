@@ -2,10 +2,10 @@
 
 namespace JDecool\Bundle\TwigConstantAccessorBundle\Twig;
 
-use Twig_Extension;
-use Twig_Extension_GlobalsInterface;
+use Twig\Extension\AbstractExtension;
+use Twig\Extension\GlobalsInterface;
 
-class ConstantAccessorExtension extends Twig_Extension implements Twig_Extension_GlobalsInterface
+class ConstantAccessorExtension extends AbstractExtension implements GlobalsInterface
 {
     /** @var array */
     private $constants;
