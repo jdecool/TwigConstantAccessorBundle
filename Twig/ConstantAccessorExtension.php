@@ -24,7 +24,7 @@ class ConstantAccessorExtension extends AbstractExtension implements GlobalsInte
     /**
      * {@inheritdoc}
      */
-    public function getGlobals()
+    public function getGlobals(): array
     {
         return $this->constants;
     }
