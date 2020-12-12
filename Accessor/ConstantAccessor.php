@@ -2,8 +2,11 @@
 
 namespace JDecool\Bundle\TwigConstantAccessorBundle\Accessor;
 
-class ConstantAccessor extends \ReflectionClass
+class ConstantAccessor
 {
+    /** @var \ReflectionClass */
+    private $reflectionClass;
+
     /** @var array */
     private $options;
 
@@ -18,9 +21,8 @@ class ConstantAccessor extends \ReflectionClass
             throw new \InvalidArgumentException(sprintf('Missing "class" name.'));
         }
 
+        $this->reflectionClass = new \ReflectionClass($options['class']);
         $this->options = $options;
-
-        parent::__construct($options['class']);
     }
 
     /**
@@ -34,7 +36,7 @@ class ConstantAccessor extends \ReflectionClass
             return $this->options['alias'];
         }
 
-        return $this->getShortName();
+        return $this->reflectionClass->getShortName();
     }
 
     /**
@@ -59,11 +61,11 @@ class ConstantAccessor extends \ReflectionClass
     public function getConstants()
     {
         if (empty($this->options['matches'])) {
-            return parent::getConstants();
+            return $this->reflectionClass->getConstants();
         }
 
         $constants = [];
-        foreach (parent::getConstants() as $const => $value) {
+        foreach ($this->reflectionClass->getConstants() as $const => $value) {
             if (false === ($matches = preg_match($this->options['matches'], $const))) {
                 throw new \InvalidArgumentException(sprintf('RegExp rule "%s" is not valid.', $this->options['matches']));
             }
@@ -84,7 +86,7 @@ class ConstantAccessor extends \ReflectionClass
     public function toArray()
     {
         return [
-            'class'     => $this->getName(),
+            'class'     => $this->reflectionClass->getName(),
             'alias'     => $this->getKey(),
             'matches'   => $this->getMatches(),
             'constants' => $this->getConstants(),
