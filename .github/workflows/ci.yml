@@ -1,0 +1,39 @@
+name: CI
+
+on: [ push, pull_request ]
+
+jobs:
+    phpunit:
+        runs-on: ${{ matrix.os }}
+        strategy:
+            matrix:
+                os: [ ubuntu-latest ]
+                composer-prefs: [ '--prefer-stable', '--prefer-lowest' ]
+                php-version: [ '7.3', '7.4', '8.0' ]
+                symfony-version: [ '4.4.*', '5.1.*', '5.2.*' ]
+        name: 'PHPUnit - PHP/${{ matrix.php-version }} - SF/${{ matrix.symfony-version }} ${{ matrix.composer-prefs }}'
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v2
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php-version }}
+                    coverage: xdebug
+            -   name: Get Composer Cache Directory
+                id: composer-cache
+                run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+            -   name: Cache dependencies
+                uses: actions/cache@v2
+                with:
+                    path: ${{ steps.composer-cache.outputs.dir }}
+                    key: ${{ matrix.php-version }}-${{ matrix.symfony-version }}-${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+                    restore-keys: ${{ runner.os }}-composer-
+            -   name: Install Dependencies
+                run: composer install --no-progress
+            -   run: composer require "symfony/dependency-injection:${{ matrix.symfony-version }}" --no-update
+            -   run: composer require "symfony/framework-bundle:${{ matrix.symfony-version }}" --no-update
+            -   run: composer require "symfony/twig-bundle:${{ matrix.symfony-version }}" --no-update
+            -   run: composer update --prefer-dist --no-interaction ${{ matrix.composer-prefs }}
+            -   name: PHPUnit
+                run: vendor/bin/phpunit

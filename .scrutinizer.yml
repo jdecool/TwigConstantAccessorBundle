@@ -11,3 +11,8 @@ build:
         php:
             ini:
                 memory_limit: "-1"
+    nodes:
+        analysis:
+            tests:
+                override:
+                    - php-scrutinizer-run
