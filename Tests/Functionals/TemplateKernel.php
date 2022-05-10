@@ -12,7 +12,7 @@ use Symfony\Component\HttpKernel\Kernel;
 
 class TemplateKernel extends Kernel
 {
-    public function registerBundles()
+    public function registerBundles(): array
     {
         return [
             new FrameworkBundle(),
@@ -21,7 +21,7 @@ class TemplateKernel extends Kernel
         ];
     }
 
-    public function registerContainerConfiguration(LoaderInterface $loader)
+    public function registerContainerConfiguration(LoaderInterface $loader): void
     {
         $loader->load($this->getRootDir().'/Resources/config/services.yml');
 
@@ -48,22 +48,22 @@ class TemplateKernel extends Kernel
         });
     }
 
-    public function getRootDir()
+    public function getRootDir(): string
     {
         return realpath(__DIR__);
     }
 
-    public function getCacheDir()
+    public function getCacheDir(): string
     {
         return sprintf('%s/logs/cache/%s', $this->getBasePath(), $this->environment);
     }
 
-    public function getLogDir()
+    public function getLogDir(): string
     {
         return sprintf('%s/logs', $this->getBasePath());
     }
 
-    public function getBasePath()
+    public function getBasePath(): string
     {
         return sprintf('%s/%s/TemplateKernel', sys_get_temp_dir(), Kernel::VERSION);
     }

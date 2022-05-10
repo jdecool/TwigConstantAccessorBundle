@@ -6,6 +6,7 @@ use JDecool\Bundle\TwigConstantAccessorBundle\DependencyInjection\Compiler\TwigC
 use JDecool\Bundle\TwigConstantAccessorBundle\DependencyInjection\Compiler\TwigConstantOptimizerPass;
 use JDecool\Bundle\TwigConstantAccessorBundle\DependencyInjection\JDecoolTwigConstantAccessorExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class JDecoolTwigConstantAccessorBundle extends Bundle
@@ -13,7 +14,7 @@ class JDecoolTwigConstantAccessorBundle extends Bundle
     /**
      * {@inheritdoc}
      */
-    public function build(ContainerBuilder $container)
+    public function build(ContainerBuilder $container): void
     {
         parent::build($container);
 
@@ -24,7 +25,7 @@ class JDecoolTwigConstantAccessorBundle extends Bundle
     /**
      * {@inheritdoc}
      */
-    public function getContainerExtension()
+    public function getContainerExtension(): ?ExtensionInterface
     {
         return new JDecoolTwigConstantAccessorExtension('twig_constant_accessor');
     }
