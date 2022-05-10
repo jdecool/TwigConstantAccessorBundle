@@ -1,4 +1,8 @@
 services:
+    template:
+        alias: twig
+        public: true
+
     constant_by_service:
         class: RegExp\Rules
         tags:
