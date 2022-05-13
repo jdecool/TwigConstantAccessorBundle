@@ -4,6 +4,7 @@ namespace JDecool\Bundle\TwigConstantAccessorBundle\DependencyInjection;
 
 use JDecool\Bundle\TwigConstantAccessorBundle\Accessor\ConstantAccessor;
 use JDecool\Bundle\TwigConstantAccessorBundle\Accessor\ConstantCollection;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Definition;
@@ -12,15 +13,12 @@ use Symfony\Component\DependencyInjection\Loader;
 
 class JDecoolTwigConstantAccessorExtension extends ConfigurableExtension
 {
-    /** @var string */
-    private $alias;
+    private string $alias;
 
     /**
      * Constructor
-     *
-     * @param string $alias
      */
-    public function __construct($alias)
+    public function __construct(string $alias)
     {
         $this->alias = $alias;
     }
@@ -28,7 +26,7 @@ class JDecoolTwigConstantAccessorExtension extends ConfigurableExtension
     /**
      * {@inheritdoc}
      */
-    public function getConfiguration(array $config, ContainerBuilder $container)
+    public function getConfiguration(array $config, ContainerBuilder $container): ?ConfigurationInterface
     {
         return new Configuration($this->alias);
     }
@@ -36,7 +34,7 @@ class JDecoolTwigConstantAccessorExtension extends ConfigurableExtension
     /**
      * {@inheritdoc}
      */
-    protected function loadInternal(array $mergedConfig, ContainerBuilder $container)
+    protected function loadInternal(array $mergedConfig, ContainerBuilder $container): void
     {
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
@@ -57,7 +55,7 @@ class JDecoolTwigConstantAccessorExtension extends ConfigurableExtension
     /**
      * {@inheritdoc}
      */
-    public function getAlias()
+    public function getAlias(): string
     {
         return $this->alias;
     }

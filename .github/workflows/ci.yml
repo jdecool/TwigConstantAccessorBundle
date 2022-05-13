@@ -4,13 +4,15 @@ on: [ push, pull_request ]
 
 jobs:
     phpunit:
-        runs-on: ${{ matrix.os }}
+        runs-on: ubuntu-latest
         strategy:
             matrix:
-                os: [ ubuntu-latest ]
                 composer-prefs: [ '--prefer-stable', '--prefer-lowest' ]
-                php-version: [ '7.3', '7.4', '8.0' ]
-                symfony-version: [ '4.4.*', '5.1.*', '5.2.*' ]
+                php-version: [ '7.4', '8.0', '8.1' ]
+                symfony-version: [ '4.4.*', '5.4.*' ]
+                include:
+                    - php-version: 8.1
+                      symfony-version: 6.0.*
         name: 'PHPUnit - PHP/${{ matrix.php-version }} - SF/${{ matrix.symfony-version }} ${{ matrix.composer-prefs }}'
         steps:
             -   name: Checkout

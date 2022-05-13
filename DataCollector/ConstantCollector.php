@@ -26,7 +26,7 @@ class ConstantCollector extends DataCollector
     /**
      * {@inheritdoc}
      */
-    public function collect(Request $request, Response $response, Throwable $exception = null)
+    public function collect(Request $request, Response $response, Throwable $exception = null): void
     {
         $this->data = [
             'accessors' => $this->accessors->toArray(),
@@ -35,10 +35,8 @@ class ConstantCollector extends DataCollector
 
     /**
      * Get all constants accessors declared
-     *
-     * @return ConstantCollection
      */
-    public function getAccessors()
+    public function getAccessors(): ConstantCollection
     {
         return $this->data['accessors'];
     }
@@ -46,7 +44,7 @@ class ConstantCollector extends DataCollector
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'constant_accessor.constant_collector';
     }
@@ -54,7 +52,7 @@ class ConstantCollector extends DataCollector
     /**
      * {@inheritdoc}
      */
-    public function reset()
+    public function reset(): void
     {
     }
 }

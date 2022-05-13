@@ -4,16 +4,11 @@ namespace JDecool\Bundle\TwigConstantAccessorBundle\Accessor;
 
 class ConstantAccessor
 {
-    /** @var \ReflectionClass */
-    private $reflectionClass;
-
-    /** @var array */
-    private $options;
+    private \ReflectionClass $reflectionClass;
+    private array $options;
 
     /**
      * Constructor
-     *
-     * @param array $options
      */
     public function __construct(array $options = [])
     {
@@ -27,10 +22,8 @@ class ConstantAccessor
 
     /**
      * Get constant access key
-     *
-     * @return string
      */
-    public function getKey()
+    public function getKey(): string
     {
         if (!empty($this->options['alias'])) {
             return $this->options['alias'];
@@ -41,10 +34,8 @@ class ConstantAccessor
 
     /**
      * Get declared matches rules
-     *
-     * @return string
      */
-    public function getMatches()
+    public function getMatches(): ?string
     {
         if (empty($this->options['matches'])) {
             return null;
@@ -55,10 +46,8 @@ class ConstantAccessor
 
     /**
      * Extract class constants
-     *
-     * @return array
      */
-    public function getConstants()
+    public function getConstants(): array
     {
         if (empty($this->options['matches'])) {
             return $this->reflectionClass->getConstants();
@@ -80,10 +69,8 @@ class ConstantAccessor
 
     /**
      * Transform object to an array
-     *
-     * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'class'     => $this->reflectionClass->getName(),

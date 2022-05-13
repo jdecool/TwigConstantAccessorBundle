@@ -5,7 +5,7 @@ namespace JDecool\Bundle\TwigConstantAccessorBundle\Accessor;
 class ConstantCollection implements \ArrayAccess, \IteratorAggregate
 {
     /** @var ConstantAccessor[] */
-    private $contants;
+    private array $contants;
 
     /**
      * Constructor
@@ -21,20 +21,16 @@ class ConstantCollection implements \ArrayAccess, \IteratorAggregate
      * Add constant from array configuration
      *
      * @param array $configuration
-     * @return ConstantCollection
      */
-    public function addFromArray(array $configuration)
+    public function addFromArray(array $configuration): ConstantCollection
     {
         return $this->add(new ConstantAccessor($configuration));
     }
 
     /**
      * Add constant accesor to collection
-     *
-     * @param ConstantAccessor $accessor
-     * @return ConstantCollection
      */
-    public function add(ConstantAccessor $accessor)
+    public function add(ConstantAccessor $accessor): ConstantCollection
     {
         $this->contants[$accessor->getKey()] = $accessor;
 
@@ -43,20 +39,19 @@ class ConstantCollection implements \ArrayAccess, \IteratorAggregate
 
     /**
      * Transform the collection in array
-     *
-     * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
-        return array_map(function(ConstantAccessor $accessor) {
-            return $accessor->toArray();
-        }, $this->contants);
+        return array_map(
+            static fn (ConstantAccessor $accessor): array => $accessor->toArray(),
+            $this->contants,
+        );
     }
 
     /**
      * {@inheritdoc}
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->contants[$offset]);
     }
@@ -64,7 +59,7 @@ class ConstantCollection implements \ArrayAccess, \IteratorAggregate
     /**
      * {@inheritdoc}
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): ConstantAccessor
     {
         return $this->contants[$offset];
     }
@@ -72,7 +67,7 @@ class ConstantCollection implements \ArrayAccess, \IteratorAggregate
     /**
      * {@inheritdoc}
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->contants[$offset] = $value;
     }
@@ -80,7 +75,7 @@ class ConstantCollection implements \ArrayAccess, \IteratorAggregate
     /**
      * {@inheritdoc}
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->contants[$offset]);
     }
@@ -88,7 +83,7 @@ class ConstantCollection implements \ArrayAccess, \IteratorAggregate
     /**
      * {@inheritdoc}
      */
-    public function getIterator()
+    public function getIterator(): \Iterator
     {
         return new \ArrayIterator($this->contants);
     }

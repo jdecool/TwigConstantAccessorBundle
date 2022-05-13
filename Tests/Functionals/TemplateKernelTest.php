@@ -2,8 +2,11 @@
 
 namespace JDecool\Bundle\TwigConstantAccessorBundle\Tests\Functionals;
 
+use JDecool\Bundle\TwigConstantAccessorBundle\Twig\ConstantAccessorExtension;
 use Symfony\Component\Filesystem\Filesystem;
+use Twig\Environment;
 use Twig\Error\RuntimeError;
+use Twig\Loader\FilesystemLoader;
 
 class TemplateKernelTest extends \PHPUnit_Framework_TestCase
 {
@@ -91,6 +94,6 @@ class TemplateKernelTest extends \PHPUnit_Framework_TestCase
 
     private function render($template)
     {
-        return $this->kernel->getContainer()->get('twig')->render($template);
+        return $this->kernel->getContainer()->get('template')->render($template);
     }
 }
