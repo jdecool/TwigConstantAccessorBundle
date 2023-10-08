@@ -49,7 +49,7 @@ class TemplateKernel extends Kernel
 
     public function getRootDir(): string
     {
-        return realpath(__DIR__);
+        return realpath(__DIR__) ?: throw new \RuntimeException('Unable to find the root directory.');
     }
 
     public function getCacheDir(): string

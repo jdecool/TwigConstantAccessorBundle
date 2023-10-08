@@ -22,6 +22,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder($this->alias);
         $rootNode = $treeBuilder->getRootNode();
 
+        /* @phpstan-ignore-next-line */
         $rootNode
             ->children()
                 ->arrayNode('classes')

@@ -4,17 +4,12 @@ namespace JDecool\Bundle\TwigConstantAccessorBundle\Accessor;
 
 class ConstantCollection implements \ArrayAccess, \IteratorAggregate
 {
-    /** @var ConstantAccessor[] */
-    private array $contants;
-
     /**
-     * Constructor.
-     *
-     * @param ConstantAccessor[] $constants
+     * @param array<array-key, ConstantAccessor> $constants
      */
-    public function __construct(array $constants = [])
-    {
-        $this->contants = $constants;
+    public function __construct(
+        private array $constants = [],
+    ) {
     }
 
     /**
@@ -26,11 +21,11 @@ class ConstantCollection implements \ArrayAccess, \IteratorAggregate
     }
 
     /**
-     * Add constant accesor to collection.
+     * Add constant accessor to collection.
      */
     public function add(ConstantAccessor $accessor): ConstantCollection
     {
-        $this->contants[$accessor->getKey()] = $accessor;
+        $this->constants[$accessor->getKey()] = $accessor;
 
         return $this;
     }
@@ -42,32 +37,36 @@ class ConstantCollection implements \ArrayAccess, \IteratorAggregate
     {
         return array_map(
             static fn (ConstantAccessor $accessor): array => $accessor->toArray(),
-            $this->contants,
+            $this->constants,
         );
     }
 
     public function offsetExists($offset): bool
     {
-        return isset($this->contants[$offset]);
+        return isset($this->constants[$offset]);
     }
 
     public function offsetGet($offset): ConstantAccessor
     {
-        return $this->contants[$offset];
+        return $this->constants[$offset];
     }
 
     public function offsetSet($offset, $value): void
     {
-        $this->contants[$offset] = $value;
+        if (!$value instanceof ConstantAccessor) {
+            throw new \InvalidArgumentException(sprintf('Expected instance of "%s", "%s" given.', ConstantAccessor::class, get_debug_type($value)));
+        }
+
+        $this->constants[$offset] = $value;
     }
 
     public function offsetUnset($offset): void
     {
-        unset($this->contants[$offset]);
+        unset($this->constants[$offset]);
     }
 
     public function getIterator(): \Iterator
     {
-        return new \ArrayIterator($this->contants);
+        return new \ArrayIterator($this->constants);
     }
 }

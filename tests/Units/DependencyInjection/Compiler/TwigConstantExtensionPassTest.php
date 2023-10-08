@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\Definition;
 
 class TwigConstantExtensionPassTest extends AbstractCompilerPassTestCase
 {
-    public function testConstantServiceRegistrationWithoutData()
+    public function testConstantServiceRegistrationWithoutData(): void
     {
         $this->createContainerBuilder();
 
@@ -20,7 +20,7 @@ class TwigConstantExtensionPassTest extends AbstractCompilerPassTestCase
         );
     }
 
-    public function testConstantServiceRegistrationWithoutTaggedService()
+    public function testConstantServiceRegistrationWithoutTaggedService(): void
     {
         $service = (new Definition())
             ->setClass('ActivationStatus');
@@ -31,7 +31,7 @@ class TwigConstantExtensionPassTest extends AbstractCompilerPassTestCase
         $this->assertEmpty($registeredService->getMethodCalls());
     }
 
-    public function testConstantServiceRegistration()
+    public function testConstantServiceRegistration(): void
     {
         $service = (new Definition())
             ->setClass('ActivationStatus')
@@ -52,7 +52,7 @@ class TwigConstantExtensionPassTest extends AbstractCompilerPassTestCase
         );
     }
 
-    public function testConstantServiceRegistrationWithParameters()
+    public function testConstantServiceRegistrationWithParameters(): void
     {
         $service = (new Definition())
             ->setClass('Foo\Bar')
@@ -81,7 +81,7 @@ class TwigConstantExtensionPassTest extends AbstractCompilerPassTestCase
         $container->addCompilerPass(new TwigConstantExtensionPass());
     }
 
-    private function createContainerBuilder(array $services = [])
+    private function createContainerBuilder(array $services = []): void
     {
         $accessorsCollection = (new Definition())
             ->setClass('JDecool\Bundle\TwigConstantAccessorBundle\Accessor\ConstantCollection')

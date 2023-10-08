@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\Definition;
 
 class TwigConstantOptimizerPassTest extends AbstractCompilerPassTestCase
 {
-    public function testOptimizationWithoutData()
+    public function testOptimizationWithoutData(): void
     {
         $this->createContainerBuilder();
 
@@ -21,7 +21,7 @@ class TwigConstantOptimizerPassTest extends AbstractCompilerPassTestCase
         );
     }
 
-    public function testOptimization()
+    public function testOptimization(): void
     {
         $fooClass = $this->createMock(ConstantAccessor::class);
         $fooClass->method('getKey')
@@ -66,7 +66,7 @@ class TwigConstantOptimizerPassTest extends AbstractCompilerPassTestCase
         $container->addCompilerPass(new TwigConstantOptimizerPass());
     }
 
-    private function createContainerBuilder(array $accessors = [])
+    private function createContainerBuilder(array $accessors = []): void
     {
         $managerDefinition = (new Definition())
             ->setClass('JDecool\Bundle\TwigConstantAccessorBundle\Twig\ConstantAccessorExtension')
