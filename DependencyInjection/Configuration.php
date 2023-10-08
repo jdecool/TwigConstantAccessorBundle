@@ -10,16 +10,13 @@ class Configuration implements ConfigurationInterface
     private string $alias;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct(string $alias)
     {
         $this->alias = $alias;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder($this->alias);

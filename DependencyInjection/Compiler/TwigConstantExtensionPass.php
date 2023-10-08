@@ -7,9 +7,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class TwigConstantExtensionPass implements CompilerPassInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function process(ContainerBuilder $container): void
     {
         if (!$container->has('constant_accessor.accessors')) {
@@ -25,8 +22,8 @@ class TwigConstantExtensionPass implements CompilerPassInterface
             if (!empty($tags)) {
                 foreach ($tags as $attributes) {
                     $attributes = array_merge([
-                        'class'   => $service->getClass(),
-                        'alias'   => null,
+                        'class' => $service->getClass(),
+                        'alias' => null,
                         'matches' => null,
                     ], $attributes);
 

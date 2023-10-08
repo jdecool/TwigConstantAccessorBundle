@@ -3,7 +3,6 @@
 namespace JDecool\Bundle\TwigConstantAccessorBundle\Tests\Functionals;
 
 use JDecool\Bundle\TwigConstantAccessorBundle\JDecoolTwigConstantAccessorBundle;
-use JDecool\Bundle\TwigConstantAccessorBundle\Tests\Fixtures\TestBundle\TestBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -43,7 +42,7 @@ class TemplateKernel extends Kernel
                     ['class' => 'ActivationStatus'],
                     ['class' => 'FooBarConstant', 'alias' => 'FooBarAlias'],
                     ['class' => 'RegExp\Rules', 'matches' => '/^RULE_/'],
-                ]
+                ],
             ]);
         });
     }

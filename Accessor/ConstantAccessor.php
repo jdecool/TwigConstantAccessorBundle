@@ -8,7 +8,7 @@ class ConstantAccessor
     private array $options;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct(array $options = [])
     {
@@ -21,7 +21,7 @@ class ConstantAccessor
     }
 
     /**
-     * Get constant access key
+     * Get constant access key.
      */
     public function getKey(): string
     {
@@ -33,7 +33,7 @@ class ConstantAccessor
     }
 
     /**
-     * Get declared matches rules
+     * Get declared matches rules.
      */
     public function getMatches(): ?string
     {
@@ -45,7 +45,7 @@ class ConstantAccessor
     }
 
     /**
-     * Extract class constants
+     * Extract class constants.
      */
     public function getConstants(): array
     {
@@ -68,14 +68,14 @@ class ConstantAccessor
     }
 
     /**
-     * Transform object to an array
+     * Transform object to an array.
      */
     public function toArray(): array
     {
         return [
-            'class'     => $this->reflectionClass->getName(),
-            'alias'     => $this->getKey(),
-            'matches'   => $this->getMatches(),
+            'class' => $this->reflectionClass->getName(),
+            'alias' => $this->getKey(),
+            'matches' => $this->getMatches(),
             'constants' => $this->getConstants(),
         ];
     }

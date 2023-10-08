@@ -23,7 +23,7 @@ class JDecoolTwigConstantAccessorConfigurationExtensionTest extends AbstractExte
         ];
 
         $sources = [
-            __DIR__ . '/../../Fixtures/config/config.yml',
+            __DIR__.'/../../Fixtures/config/config.yml',
         ];
 
         $this->assertProcessedConfigurationEquals($expectedConfiguration, $sources);

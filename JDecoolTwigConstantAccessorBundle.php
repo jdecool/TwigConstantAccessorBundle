@@ -11,9 +11,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class JDecoolTwigConstantAccessorBundle extends Bundle
 {
-    /**
-     * {@inheritdoc}
-     */
     public function build(ContainerBuilder $container): void
     {
         parent::build($container);
@@ -22,9 +19,6 @@ class JDecoolTwigConstantAccessorBundle extends Bundle
         $container->addCompilerPass(new TwigConstantOptimizerPass());
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getContainerExtension(): ?ExtensionInterface
     {
         return new JDecoolTwigConstantAccessorExtension('twig_constant_accessor');

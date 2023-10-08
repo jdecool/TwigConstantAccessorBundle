@@ -44,10 +44,10 @@ class TwigConstantExtensionPassTest extends AbstractCompilerPassTestCase
             'addFromArray',
             [
                 [
-                    'class'   => 'ActivationStatus',
-                    'alias'   => null,
+                    'class' => 'ActivationStatus',
+                    'alias' => null,
                     'matches' => null,
-                ]
+                ],
             ]
         );
     }
@@ -57,7 +57,7 @@ class TwigConstantExtensionPassTest extends AbstractCompilerPassTestCase
         $service = (new Definition())
             ->setClass('Foo\Bar')
             ->addTag('twig.constant_accessor', [
-                'alias'   => 'MyClassAlias',
+                'alias' => 'MyClassAlias',
                 'matches' => 'myregExp',
             ]);
 
@@ -68,10 +68,10 @@ class TwigConstantExtensionPassTest extends AbstractCompilerPassTestCase
             'addFromArray',
             [
                 [
-                    'class'   => 'Foo\Bar',
-                    'alias'   => 'MyClassAlias',
+                    'class' => 'Foo\Bar',
+                    'alias' => 'MyClassAlias',
                     'matches' => 'myregExp',
-                ]
+                ],
             ]
         );
     }
