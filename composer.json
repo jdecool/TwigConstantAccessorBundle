@@ -25,14 +25,20 @@
         "matthiasnoback/symfony-config-test": "^4.3"
     },
     "autoload": {
-        "psr-4": {"JDecool\\Bundle\\TwigConstantAccessorBundle\\": ""},
-        "exclude-from-classmap": ["Tests/"]
+        "psr-4": {
+            "JDecool\\Bundle\\TwigConstantAccessorBundle\\": "src"
+        }
     },
     "autoload-dev": {
         "psr-4": {
-            "": "Tests/Fixtures",
-            "JDecool\\Bundle\\TwigConstantAccessorBundle\\Tests\\Functionals\\": "Tests/Functionals",
-            "JDecool\\Bundle\\TwigConstantAccessorBundle\\Tests\\Units\\": "Tests/Units"
+            "": "tests/Fixtures",
+            "JDecool\\Bundle\\TwigConstantAccessorBundle\\Tests\\Functionals\\": "tests/Functionals",
+            "JDecool\\Bundle\\TwigConstantAccessorBundle\\Tests\\Units\\": "tests/Units"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
         }
     }
 }

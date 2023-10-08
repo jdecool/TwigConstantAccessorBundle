@@ -4,7 +4,7 @@
          backupGlobals="false"
          colors="true"
          convertDeprecationsToExceptions="false"
-         bootstrap="Tests/bootstrap.php"
+         bootstrap="tests/bootstrap.php"
 >
     <php>
         <ini name="error_reporting" value="-1"/>
@@ -12,7 +12,7 @@
 
     <testsuites>
         <testsuite name="JDecoolTwigContstantAccessorBundle Test Suite">
-            <directory>./Tests</directory>
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
 

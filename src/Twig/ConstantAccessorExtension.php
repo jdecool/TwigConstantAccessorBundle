@@ -12,6 +12,7 @@ class ConstantAccessorExtension extends AbstractExtension implements GlobalsInte
 
     /**
      * Constructor.
+     * Constructor.
      */
     public function __construct(array $constants = [])
     {
