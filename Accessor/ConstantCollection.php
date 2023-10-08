@@ -8,7 +8,7 @@ class ConstantCollection implements \ArrayAccess, \IteratorAggregate
     private array $contants;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param ConstantAccessor[] $constants
      */
@@ -18,9 +18,7 @@ class ConstantCollection implements \ArrayAccess, \IteratorAggregate
     }
 
     /**
-     * Add constant from array configuration
-     *
-     * @param array $configuration
+     * Add constant from array configuration.
      */
     public function addFromArray(array $configuration): ConstantCollection
     {
@@ -28,7 +26,7 @@ class ConstantCollection implements \ArrayAccess, \IteratorAggregate
     }
 
     /**
-     * Add constant accesor to collection
+     * Add constant accesor to collection.
      */
     public function add(ConstantAccessor $accessor): ConstantCollection
     {
@@ -38,7 +36,7 @@ class ConstantCollection implements \ArrayAccess, \IteratorAggregate
     }
 
     /**
-     * Transform the collection in array
+     * Transform the collection in array.
      */
     public function toArray(): array
     {
@@ -48,41 +46,26 @@ class ConstantCollection implements \ArrayAccess, \IteratorAggregate
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function offsetExists($offset): bool
     {
         return isset($this->contants[$offset]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function offsetGet($offset): ConstantAccessor
     {
         return $this->contants[$offset];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function offsetSet($offset, $value): void
     {
         $this->contants[$offset] = $value;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function offsetUnset($offset): void
     {
         unset($this->contants[$offset]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getIterator(): \Iterator
     {
         return new \ArrayIterator($this->contants);

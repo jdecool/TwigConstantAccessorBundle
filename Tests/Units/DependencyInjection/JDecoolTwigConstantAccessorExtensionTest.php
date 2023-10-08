@@ -30,8 +30,8 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
             'addFromArray',
             [
                 [
-                    'class'   => 'ActivationStatus',
-                    'alias'   => null,
+                    'class' => 'ActivationStatus',
+                    'alias' => null,
                     'matches' => null,
                 ],
             ]
@@ -53,8 +53,8 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
             'addFromArray',
             [
                 [
-                    'class'   => 'ActivationStatus',
-                    'alias'   => null,
+                    'class' => 'ActivationStatus',
+                    'alias' => null,
                     'matches' => null,
                 ],
             ]
@@ -76,8 +76,8 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
             'addFromArray',
             [
                 [
-                    'class'   => 'ActivationStatus',
-                    'alias'   => 'AliasName',
+                    'class' => 'ActivationStatus',
+                    'alias' => 'AliasName',
                     'matches' => null,
                 ],
             ]
@@ -101,8 +101,8 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
             'addFromArray',
             [
                 [
-                    'class'   => 'ActivationStatus',
-                    'alias'   => null,
+                    'class' => 'ActivationStatus',
+                    'alias' => null,
                     'matches' => null,
                 ],
             ]
@@ -113,8 +113,8 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
             'addFromArray',
             [
                 [
-                    'class'   => 'FooBarConstant',
-                    'alias'   => null,
+                    'class' => 'FooBarConstant',
+                    'alias' => null,
                     'matches' => null,
                 ],
             ]
@@ -125,8 +125,8 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
             'addFromArray',
             [
                 [
-                    'class'   => 'ActivationStatus',
-                    'alias'   => 'StatusAlias',
+                    'class' => 'ActivationStatus',
+                    'alias' => 'StatusAlias',
                     'matches' => null,
                 ],
             ]
@@ -148,8 +148,8 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
             'addFromArray',
             [
                 [
-                    'class'   => 'FooBarConstant',
-                    'alias'   => null,
+                    'class' => 'FooBarConstant',
+                    'alias' => null,
                     'matches' => '/^RULE/',
                 ],
             ]

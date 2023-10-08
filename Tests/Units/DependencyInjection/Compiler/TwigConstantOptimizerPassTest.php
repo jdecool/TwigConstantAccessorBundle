@@ -56,7 +56,7 @@ class TwigConstantOptimizerPassTest extends AbstractCompilerPassTestCase
                 'BarAlias' => [
                     'BAR_1' => 'bar1',
                     'BAR_2' => 'bar2',
-                ]
+                ],
             ]
         );
     }

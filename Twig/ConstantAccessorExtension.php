@@ -10,28 +10,19 @@ class ConstantAccessorExtension extends AbstractExtension implements GlobalsInte
     /** @var array */
     private $constants;
 
-
     /**
-     * Constructor
-     *
-     * @param array $constants
+     * Constructor.
      */
     public function __construct(array $constants = [])
     {
         $this->constants = $constants;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getGlobals(): array
     {
         return $this->constants;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return 'twig.constant_accessor';
