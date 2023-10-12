@@ -7,7 +7,7 @@ use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 
 class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
 {
-    public function testLoadEmpty()
+    public function testLoadEmpty(): void
     {
         $this->setParameter('kernel.debug', true);
         $this->load();
@@ -15,7 +15,7 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasService('twig.extension.constant_accessor');
     }
 
-    public function testLoadWithClassStringDefinition()
+    public function testLoadWithClassStringDefinition(): void
     {
         $this->setParameter('kernel.debug', true);
         $this->load([
@@ -38,7 +38,7 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function testLoadWithClassArrayDefinition()
+    public function testLoadWithClassArrayDefinition(): void
     {
         $this->setParameter('kernel.debug', true);
         $this->load([
@@ -61,7 +61,7 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function testLoadWithClassAliasDefinition()
+    public function testLoadWithClassAliasDefinition(): void
     {
         $this->setParameter('kernel.debug', true);
         $this->load([
@@ -84,7 +84,7 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function testLoadWithMultipleClassDefinition()
+    public function testLoadWithMultipleClassDefinition(): void
     {
         $this->setParameter('kernel.debug', true);
         $this->load([
@@ -133,7 +133,7 @@ class JDecoolTwigConstantAccessorExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function testLoadWithMatchesDefinition()
+    public function testLoadWithMatchesDefinition(): void
     {
         $this->setParameter('kernel.debug', true);
         $this->load([

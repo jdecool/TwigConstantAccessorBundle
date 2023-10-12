@@ -3,10 +3,11 @@
 namespace JDecool\Bundle\TwigConstantAccessorBundle\Tests\Units\Twig;
 
 use JDecool\Bundle\TwigConstantAccessorBundle\Twig\ConstantAccessorExtension;
+use PHPUnit\Framework\TestCase;
 
-class ConstantAccessorExtensionTest extends \PHPUnit_Framework_TestCase
+class ConstantAccessorExtensionTest extends TestCase
 {
-    public function testGlobalsAccess()
+    public function testGlobalsAccess(): void
     {
         $expected = [
             'foo' => [],

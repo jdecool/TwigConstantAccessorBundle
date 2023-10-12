@@ -5,19 +5,15 @@ namespace JDecool\Bundle\TwigConstantAccessorBundle\Accessor;
 class ConstantAccessor
 {
     private \ReflectionClass $reflectionClass;
-    private array $options;
 
-    /**
-     * Constructor.
-     */
-    public function __construct(array $options = [])
-    {
+    public function __construct(
+        private array $options = [],
+    ) {
         if (empty($options['class'])) {
             throw new \InvalidArgumentException(sprintf('Missing "class" name.'));
         }
 
         $this->reflectionClass = new \ReflectionClass($options['class']);
-        $this->options = $options;
     }
 
     /**
@@ -46,6 +42,8 @@ class ConstantAccessor
 
     /**
      * Extract class constants.
+     *
+     * @return array<string, mixed>
      */
     public function getConstants(): array
     {
@@ -69,6 +67,8 @@ class ConstantAccessor
 
     /**
      * Transform object to an array.
+     *
+     * @return array{class: string, alias: string, matches: ?string, constants: array<string, mixed>}
      */
     public function toArray(): array
     {

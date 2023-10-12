@@ -9,15 +9,9 @@ use Symfony\Component\HttpKernel\DataCollector\DataCollector;
 
 class ConstantCollector extends DataCollector
 {
-    /** @var ConstantCollection */
-    private $accessors;
-
-    /**
-     * Constructor.
-     */
-    public function __construct(ConstantCollection $accessors)
-    {
-        $this->accessors = $accessors;
+    public function __construct(
+        private ConstantCollection $accessors,
+    ) {
     }
 
     public function collect(Request $request, Response $response, \Throwable $exception = null): void

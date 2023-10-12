@@ -1,8 +1,7 @@
 <?php
 
 $finder = (new PhpCsFixer\Finder())
-    ->in(__DIR__)
-    ->exclude('var')
+    ->in([__DIR__])
 ;
 
 return (new PhpCsFixer\Config())

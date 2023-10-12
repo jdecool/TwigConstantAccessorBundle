@@ -22,17 +22,25 @@
         "phpunit/phpunit": "^9.5",
         "matthiasnoback/symfony-dependency-injection-test": "^4.3",
         "friendsofphp/php-cs-fixer": "^3.34",
-        "matthiasnoback/symfony-config-test": "^4.3"
+        "matthiasnoback/symfony-config-test": "^4.3",
+        "phpstan/extension-installer": "^1.3",
+        "phpstan/phpstan": "^1.10"
     },
     "autoload": {
-        "psr-4": {"JDecool\\Bundle\\TwigConstantAccessorBundle\\": ""},
-        "exclude-from-classmap": ["Tests/"]
+        "psr-4": {
+            "JDecool\\Bundle\\TwigConstantAccessorBundle\\": "src"
+        }
     },
     "autoload-dev": {
         "psr-4": {
-            "": "Tests/Fixtures",
-            "JDecool\\Bundle\\TwigConstantAccessorBundle\\Tests\\Functionals\\": "Tests/Functionals",
-            "JDecool\\Bundle\\TwigConstantAccessorBundle\\Tests\\Units\\": "Tests/Units"
+            "": "tests/Fixtures",
+            "JDecool\\Bundle\\TwigConstantAccessorBundle\\Tests\\Functionals\\": "tests/Functionals",
+            "JDecool\\Bundle\\TwigConstantAccessorBundle\\Tests\\Units\\": "tests/Units"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
         }
     }
 }

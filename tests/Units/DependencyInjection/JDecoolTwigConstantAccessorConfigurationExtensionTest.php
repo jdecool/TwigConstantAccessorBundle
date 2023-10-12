@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 
 class JDecoolTwigConstantAccessorConfigurationExtensionTest extends AbstractExtensionConfigurationTestCase
 {
-    public function testLoadFileConfiguration()
+    public function testLoadFileConfiguration(): void
     {
         $expectedConfiguration = [
             'classes' => [

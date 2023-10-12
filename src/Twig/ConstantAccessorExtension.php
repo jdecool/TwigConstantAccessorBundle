@@ -7,8 +7,7 @@ use Twig\Extension\GlobalsInterface;
 
 class ConstantAccessorExtension extends AbstractExtension implements GlobalsInterface
 {
-    /** @var array */
-    private $constants;
+    private array $constants;
 
     /**
      * Constructor.
@@ -23,7 +22,7 @@ class ConstantAccessorExtension extends AbstractExtension implements GlobalsInte
         return $this->constants;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'twig.constant_accessor';
     }

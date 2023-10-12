@@ -2,12 +2,14 @@
 
 namespace JDecool\Bundle\TwigConstantAccessorBundle\Tests\Functionals;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
+use Twig\Environment;
 use Twig\Error\RuntimeError;
 
-class TemplateKernelTest extends \PHPUnit_Framework_TestCase
+class TemplateKernelTest extends TestCase
 {
-    private $kernel;
+    private TemplateKernel $kernel;
 
     protected function setUp(): void
     {
@@ -26,14 +28,14 @@ class TemplateKernelTest extends \PHPUnit_Framework_TestCase
         $fs->remove($this->kernel->getBasePath());
     }
 
-    public function testStringConfiguration()
+    public function testStringConfiguration(): void
     {
         $content = $this->render('index.html.twig');
 
         $this->assertStringContainsString('foo_bar_name', $content);
     }
 
-    public function testArrayConfiguration()
+    public function testArrayConfiguration(): void
     {
         $content = $this->render('index.html.twig');
 
@@ -41,7 +43,7 @@ class TemplateKernelTest extends \PHPUnit_Framework_TestCase
         $this->assertStringContainsString('activationstatus_active', $content);
     }
 
-    public function testAliasConfiguration()
+    public function testAliasConfiguration(): void
     {
         $content = $this->render('index.html.twig');
 
@@ -49,7 +51,7 @@ class TemplateKernelTest extends \PHPUnit_Framework_TestCase
         $this->assertStringContainsString('foobarconstant_bar', $content);
     }
 
-    public function testRegExpConfiguration()
+    public function testRegExpConfiguration(): void
     {
         $content = $this->render('regexp.html.twig');
 
@@ -60,14 +62,14 @@ class TemplateKernelTest extends \PHPUnit_Framework_TestCase
         $this->assertStringNotContainsString('doe', $content);
     }
 
-    public function testExceptionThrowWhenUsingVariableDontMatchRegExp()
+    public function testExceptionThrowWhenUsingVariableDontMatchRegExp(): void
     {
         $this->expectException(RuntimeError::class);
 
         $content = $this->render('regexp_not_existant_vars.html.twig');
     }
 
-    public function testServiceConfiguration()
+    public function testServiceConfiguration(): void
     {
         $content = $this->render('regexp_service_alias.html.twig');
 
@@ -78,7 +80,7 @@ class TemplateKernelTest extends \PHPUnit_Framework_TestCase
         $this->assertStringContainsString('doe', $content);
     }
 
-    public function testServiceMatchesConfiguration()
+    public function testServiceMatchesConfiguration(): void
     {
         $content = $this->render('regexp_service.html.twig');
 
@@ -89,8 +91,11 @@ class TemplateKernelTest extends \PHPUnit_Framework_TestCase
         $this->assertStringNotContainsString('doe', $content);
     }
 
-    private function render($template)
+    private function render(string $template): string
     {
-        return $this->kernel->getContainer()->get('template')->render($template);
+        /** @var Environment $twig */
+        $twig = $this->kernel->getContainer()->get('template');
+
+        return $twig->render($template);
     }
 }
