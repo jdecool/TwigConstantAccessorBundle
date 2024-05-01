@@ -1,10 +1,9 @@
 # TwigConstantAccessorBundle
 
 [![Build Status](https://travis-ci.org/jdecool/TwigConstantAccessorBundle.svg?branch=master)](https://travis-ci.org/jdecool/TwigConstantAccessorBundle?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jdecool/TwigConstantAccessorBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jdecool/TwigConstantAccessorBundle/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/jdecool/twig-constant-accessor-bundle/v/stable.png)](https://packagist.org/packages/jdecool/twig-constant-accessor-bundle)
 
-This bundle simplify access of your class constants in Twig.
+This bundle simplify access of your enum values or class constants in Twig.
 
 ## Install it
 

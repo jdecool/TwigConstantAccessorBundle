@@ -91,6 +91,19 @@ class TemplateKernelTest extends TestCase
         $this->assertStringNotContainsString('doe', $content);
     }
 
+    public function testEnumAccess(): void
+    {
+        if (!class_exists(\UnitEnum::class)) {
+            $this->markTestSkipped('Enum class is not available');
+        }
+
+        $content = $this->render('enum.html.twig');
+
+        $this->assertStringNotContainsString('Foo', $content);
+        $this->assertStringContainsString('Bar', $content);
+        $this->assertStringContainsString('acme', $content);
+    }
+
     private function render(string $template): string
     {
         /** @var Environment $twig */

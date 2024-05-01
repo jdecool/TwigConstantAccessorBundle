@@ -39,6 +39,8 @@ class TemplateKernel extends Kernel
             $container->loadFromExtension('twig_constant_accessor', [
                 'classes' => [
                     'Foo\Bar',
+                    'FooEnum',
+                    'FooBackedEnum',
                     ['class' => 'ActivationStatus'],
                     ['class' => 'FooBarConstant', 'alias' => 'FooBarAlias'],
                     ['class' => 'RegExp\Rules', 'matches' => '/^RULE_/'],
