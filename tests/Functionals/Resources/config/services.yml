@@ -1,7 +1,13 @@
 services:
+    _defaults:
+        autoconfigure: true
+
     template:
         alias: twig
         public: true
+
+    Foo\ClassConstantByAttribute: ~
+    Foo\ClassConstantByAttributeWithArgs: ~
 
     constant_by_service:
         class: RegExp\Rules

@@ -91,17 +91,32 @@ class TemplateKernelTest extends TestCase
         $this->assertStringNotContainsString('doe', $content);
     }
 
+    /**
+     * @requires PHP >= 8.1
+     */
     public function testEnumAccess(): void
     {
-        if (!class_exists(\UnitEnum::class)) {
-            $this->markTestSkipped('Enum class is not available');
-        }
-
         $content = $this->render('enum.html.twig');
 
         $this->assertStringNotContainsString('Foo', $content);
         $this->assertStringContainsString('Bar', $content);
         $this->assertStringContainsString('acme', $content);
+    }
+
+    public function testAccessByAttribute(): void
+    {
+        $content = $this->render('class_constants_by_attribute.html.twig');
+
+        $this->assertStringContainsString('foo', $content);
+        $this->assertStringContainsString('bar', $content);
+    }
+
+    public function testAccessByAttributeWithArgs(): void
+    {
+        $content = $this->render('class_constants_by_attribute_with_args.html.twig');
+
+        $this->assertStringContainsString('selected_foo', $content);
+        $this->assertStringContainsString('selected_bar', $content);
     }
 
     private function render(string $template): string

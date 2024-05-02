@@ -55,6 +55,18 @@ services:
             - { name: twig.constant_accessor, matches: '/^RULE_/' } # matches accept an regexp compatible with the preg_match function
 ```
 
+Or you can use the `#[AsTwigConstantAccessor]` attribute on your class :
+
+```php
+use JDecool\Bundle\TwigConstantAccessorBundle\Annotation\AsTwigConstantAccessor;
+
+#[AsTwigConstantAccessor]
+class MyClass
+{
+    // ...
+}
+```
+
 After you can access your class constant in your templates :
 
 ```twig
