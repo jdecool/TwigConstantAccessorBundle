@@ -25,6 +25,10 @@ class ConstantCollection implements \ArrayAccess, \IteratorAggregate
      */
     public function add(ConstantAccessor $accessor): ConstantCollection
     {
+        if (isset($this->constants[$accessor->getKey()])) {
+            trigger_deprecation('jdecool/twig-constant-accessor-bundle', '1.11.0', "Constant with '{$accessor->getKey()}' has been override and is deprecated. It will be removed in next major version. Please fix your code.");
+        }
+
         $this->constants[$accessor->getKey()] = $accessor;
 
         return $this;
