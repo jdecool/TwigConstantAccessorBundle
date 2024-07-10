@@ -63,6 +63,8 @@ jobs:
                       symfony-version: 6.4.*
                     - php-version: 8.3
                       symfony-version: 7.0.*
+                    - php-version: 8.3
+                      symfony-version: 7.1.*
         name: 'PHPUnit - PHP/${{ matrix.php-version }} - SF/${{ matrix.symfony-version }} ${{ matrix.composer-prefs }}'
         steps:
             -   name: Checkout

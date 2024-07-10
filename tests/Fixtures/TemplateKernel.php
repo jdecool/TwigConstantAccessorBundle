@@ -1,6 +1,6 @@
 <?php
 
-namespace JDecool\Bundle\TwigConstantAccessorBundle\Tests\Functionals;
+namespace JDecool\Bundle\TwigConstantAccessorBundle\Tests\Fixtures;
 
 use JDecool\Bundle\TwigConstantAccessorBundle\JDecoolTwigConstantAccessorBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
@@ -34,17 +34,6 @@ class TemplateKernel extends Kernel
                     realpath(__DIR__.'/Resources/views'),
                 ],
                 'strict_variables' => true,
-            ]);
-
-            $container->loadFromExtension('twig_constant_accessor', [
-                'classes' => [
-                    'Foo\Bar',
-                    'FooEnum',
-                    'FooBackedEnum',
-                    ['class' => 'ActivationStatus'],
-                    ['class' => 'FooBarConstant', 'alias' => 'FooBarAlias'],
-                    ['class' => 'RegExp\Rules', 'matches' => '/^RULE_/'],
-                ],
             ]);
         });
     }
