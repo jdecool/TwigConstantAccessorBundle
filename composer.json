@@ -30,7 +30,7 @@
         "phpstan/phpstan": "^1.11",
         "phpstan/phpstan-symfony": "^1.4",
         "phpunit/phpunit": "^9.5",
-        "symfony/yaml": "^7.1"
+        "symfony/yaml": "^5.4 || ^6.4 || ^7.0"
     },
     "autoload": {
         "psr-4": {

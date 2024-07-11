@@ -2,7 +2,7 @@
 
 namespace JDecool\Bundle\TwigConstantAccessorBundle\Tests\Fixtures;
 
-use JDecool\Bundle\TwigConstantAccessorBundle\JDecoolTwigConstantAccessorBundle;
+use JDecool\Bundle\TwigConstantAccessorBundle\TwigConstantAccessorBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -16,7 +16,7 @@ class TemplateKernel extends Kernel
         return [
             new FrameworkBundle(),
             new TwigBundle(),
-            new JDecoolTwigConstantAccessorBundle(),
+            new TwigConstantAccessorBundle(),
         ];
     }
 
@@ -34,6 +34,12 @@ class TemplateKernel extends Kernel
                     realpath(__DIR__.'/Resources/views'),
                 ],
                 'strict_variables' => true,
+            ]);
+
+            $container->loadFromExtension('twig_constant_accessor', [
+                'classes' => [
+                    MyConstant::class,
+                ],
             ]);
         });
     }

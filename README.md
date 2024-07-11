@@ -20,6 +20,6 @@ If you don't use Symfony Flex, you have to enabled the bundle in your `config/bu
 
 return [
     // ...
-    JDecool\Bundle\TwigConstantAccessorBundle\JDecoolTwigConstantAccessorBundle::class => ['all' => true],
+    JDecool\Bundle\TwigConstantAccessorBundle\TwigConstantAccessorBundle::class => ['all' => true],
 ];
 ```
