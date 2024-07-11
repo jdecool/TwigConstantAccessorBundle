@@ -1,28 +1,36 @@
 {
     "name": "jdecool/twig-constant-accessor-bundle",
     "description": "Simplify access of your class constants in Twig",
-    "type": "symfony-bundle",
-    "keywords": ["symfony", "twig", "constant", "bundle"],
-    "homepage": "http://github.com/jdecool/TwigConstantAccessorBundle",
     "license": "MIT",
+    "type": "symfony-bundle",
+    "keywords": [
+        "symfony",
+        "twig",
+        "constant",
+        "bundle"
+    ],
     "authors": [
         {
             "name": "Jérémy DECOOL",
             "email": "contact@jdecool.fr"
         }
     ],
+    "homepage": "http://github.com/jdecool/TwigConstantAccessorBundle",
     "require": {
         "php": "^8.1",
-        "symfony/dependency-injection": "^5.4|^6.4|^7.0",
-        "symfony/framework-bundle": "^5.4|^6.4|^7.0",
-        "symfony/twig-bundle": "^5.4|^6.4|^7.0",
+        "symfony/dependency-injection": "^5.4 || ^6.4 || ^7.0",
+        "symfony/framework-bundle": "^5.4 || ^6.4 || ^7.0",
+        "symfony/twig-bundle": "^5.4 || ^6.4 || ^7.0",
         "twig/twig": "^3.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5",
+        "ergebnis/composer-normalize": "^2.43",
         "friendsofphp/php-cs-fixer": "^3.59",
         "phpstan/extension-installer": "^1.4",
-        "phpstan/phpstan": "^1.11"
+        "phpstan/phpstan": "^1.11",
+        "phpstan/phpstan-symfony": "^1.4",
+        "phpunit/phpunit": "^9.5",
+        "symfony/yaml": "^7.1"
     },
     "autoload": {
         "psr-4": {
@@ -36,7 +44,23 @@
     },
     "config": {
         "allow-plugins": {
+            "ergebnis/composer-normalize": true,
             "phpstan/extension-installer": true
-        }
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@composer normalize"
+        ],
+        "post-update-cmd": [
+            "@composer normalize"
+        ],
+        "lint": [
+            "@lint.cs",
+            "@lint.phpstan"
+        ],
+        "lint.cs": "php-cs-fixer fix --diff --verbose",
+        "lint.phpstan": "phpstan analyze"
     }
 }
