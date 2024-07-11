@@ -1,0 +1,7 @@
+services:
+    _defaults:
+        autoconfigure: true
+
+    template:
+        alias: twig
+        public: true
