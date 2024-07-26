@@ -61,6 +61,6 @@ class TemplateKernel extends Kernel
 
     public function getBasePath(): string
     {
-        return sprintf('%s/%s/TemplateKernel', sys_get_temp_dir(), Kernel::VERSION);
+        return sprintf('%s/TwigConstantAccessor/%s/TemplateKernel', sys_get_temp_dir(), Kernel::VERSION);
     }
 }
