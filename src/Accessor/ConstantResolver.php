@@ -8,11 +8,11 @@ namespace JDecool\Bundle\TwigConstantAccessorBundle\Accessor;
 class ConstantResolver
 {
     /**
-     * @param list<ConstantConfiguration> $classes
+     * @param iterable<ConstantConfiguration> $classes
      *
      * @return array<string, mixed>
      */
-    public function fromClassList(array $classes): array
+    public function fromClassList(iterable $classes): array
     {
         $constants = [];
 

@@ -18,6 +18,7 @@
     "homepage": "http://github.com/jdecool/TwigConstantAccessorBundle",
     "require": {
         "php": "^8.1",
+        "kcs/class-finder": "^0.5.0",
         "symfony/dependency-injection": "^5.4 || ^6.4 || ^7.0",
         "symfony/framework-bundle": "^5.4 || ^6.4 || ^7.0",
         "symfony/twig-bundle": "^5.4 || ^6.4 || ^7.0",

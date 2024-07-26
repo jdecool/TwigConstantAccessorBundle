@@ -32,6 +32,7 @@ final class ConstantAccessFunctionalTest extends TestCase
         $content = $this->render('index.html.twig');
 
         $this->assertStringContainsString('my_constant.my_constant_value', $content);
+        $this->assertStringContainsString('from_attribute_1', $content);
     }
 
     private function render(string $template): string
