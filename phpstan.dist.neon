@@ -3,5 +3,7 @@ parameters:
     paths:
         - src
         - tests
-    checkGenericClassInNonGenericObjectType: false
-    checkMissingIterableValueType: false
+
+    ignoreErrors:
+        - identifier: missingType.iterableValue
+        - identifier: missingType.generics
