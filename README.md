@@ -10,7 +10,7 @@ This bundle simplify access of your enum values or class constants in Twig.
 Install extension using [composer](https://getcomposer.org):
 
 ```bash
-$ composer require jdecool/twig-constant-accessor-bundle
+composer require jdecool/twig-constant-accessor-bundle
 ```
 
 If you don't use Symfony Flex, you have to enabled the bundle in your `config/bundles.php` configuration:
